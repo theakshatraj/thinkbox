@@ -24,8 +24,7 @@ import React from "react";
 
 type Formtype = "sign-in" | "sign-up";
 
-const AuthForm = ({type}: { type: Formtype }) => {
-  // 1. Define your form.
+const AuthForm = ({type}: { type: Formtype }) => {  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,10 +32,7 @@ const AuthForm = ({type}: { type: Formtype }) => {
     },
   });
 
-  // 2. Define a submit handler.
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {  
     console.log(values);
   };
 
