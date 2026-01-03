@@ -15,10 +15,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           />
 
           <div className="space-y-5 text-white">
-            <h1 className="h1">Manage your files, the smart way</h1>
+            <h1 className="h1">Manage your files the best way</h1>
             <p className="body-1">
-              Store, organize, and find your files effortlessly with AI-powered
-              cloud storage.
+              Awesome, we've created the perfect place for you to store all your
+              documents.
             </p>
           </div>
           <Image
