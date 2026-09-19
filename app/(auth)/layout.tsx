@@ -15,14 +15,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           />
 
           <div className="space-y-5 text-white">
-            <h1 className="h1">Manage your files the best way</h1>
+            <h1 className="h1">Intelligent Storage for your Digital Life</h1>
             <p className="body-1">
-              Awesome, we've created the perfect place for you to store all your
-              documents.
+              The smartest way to store, organize, and access your files with AI.
             </p>
           </div>
           <Image
-            src="/assets/images/files.png"
+            src="/assets/images/hero-auth.svg"
             alt="Files"
             width={342}
             height={342}
@@ -30,19 +29,22 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           />
         </div>
       </section>
+
       <section className="flex flex-1 flex-col items-center bg-white p-4 py-10 lg:justify-center lg:p-10 lg:py-0">
         <div className="mb-16 lg:hidden">
-        <Image 
+          <Image
             src="/assets/icons/logo-full-brand.svg"
             alt="logo"
             width={224}
             height={82}
             className="h-auto w-[200px] lg:w-[250px]"
-          /> 
+          />
         </div>
+
         {children}
       </section>
     </div>
   );
 };
+
 export default Layout;

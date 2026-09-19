@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 506 418" width="506" height="418">
+  <defs>
+    <linearGradient id="sbCloud" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D7E7FB"/>
+      <stop offset="55%" stop-color="#A7C9F2"/>
+      <stop offset="100%" stop-color="#76A9E8"/>
+    </linearGradient>
+    <linearGradient id="sbPanel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EAF2FC"/>
+    </linearGradient>
+    <linearGradient id="sbRack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F5399"/>
+      <stop offset="100%" stop-color="#0A3470"/>
+    </linearGradient>
+    <linearGradient id="sbFile" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3078C9"/>
+      <stop offset="100%" stop-color="#10498E"/>
+    </linearGradient>
+    <linearGradient id="sbFolder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC857"/>
+      <stop offset="100%" stop-color="#E68F12"/>
+    </linearGradient>
+    <linearGradient id="sbImage" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4A8FD6"/>
+      <stop offset="100%" stop-color="#2462A8"/>
+    </linearGradient>
+    <radialGradient id="sbGlow" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#B3D4FF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#B3D4FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="506" height="418" rx="24" fill="#F2F7FD"/>
+  <circle cx="253" cy="200" r="185" fill="url(#sbGlow)"/>
+
+  <!-- Upward arrows (sync/upload) -->
+  <g stroke="#3078C9" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.6">
+    <path d="M120 340 L120 290 M108 302 L120 290 L132 302"/>
+    <path d="M253 360 L253 285 L253 285 M240 300 L253 285 L266 300"/>
+    <path d="M386 340 L386 290 M374 302 L386 290 L398 302"/>
+  </g>
+
+  <!-- Cloud -->
+  <g transform="translate(155, 85)">
+    <path d="M55 150 C15 150 -10 120 0 85 C6 55 40 35 72 42 C78 15 118 0 148 15 C162 -5 205 -2 218 28 C248 24 272 52 258 88 C252 112 225 128 200 124 C198 140 178 154 155 152 C142 165 112 165 95 152 Z"
+          fill="url(#sbCloud)" stroke="#76A9E8" stroke-width="1.5" stroke-opacity="0.6"/>
+    <path d="M72 60 C85 40 115 32 140 45" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Floating folder (top left) -->
+  <g transform="translate(52, 118) rotate(-8)">
+    <path d="M0 14 L0 58 C0 64 6 70 14 70 L84 70 C92 70 98 64 98 58 L98 24 C98 17 92 14 84 14 L48 14 L40 2 L14 2 C6 2 0 6 0 14 Z"
+          fill="url(#sbFolder)" stroke="#FFFFFF" stroke-opacity="0.6"/>
+  </g>
+
+  <!-- Floating image file (top right) -->
+  <g transform="translate(370, 120) rotate(7)">
+    <rect width="82" height="68" rx="8" fill="url(#sbImage)" stroke="#FFFFFF" stroke-opacity="0.6"/>
+    <circle cx="60" cy="20" r="7" fill="#FFE082"/>
+    <polygon points="10,58 30,28 48,46 62,30 75,58" fill="#FFFFFF" fill-opacity="0.9"/>
+  </g>
+
+  <!-- Floating blue document (middle left) -->
+  <g transform="translate(72, 230) rotate(6)">
+    <rect width="68" height="86" rx="8" fill="url(#sbFile)" stroke="#FFFFFF" stroke-opacity="0.6"/>
+    <path d="M68 0 L68 30 L38 0 Z" fill="#FFFFFF" fill-opacity="0.25"/>
+    <g stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="2.5" stroke-linecap="round">
+      <line x1="14" y1="50" x2="52" y2="50"/>
+      <line x1="14" y1="62" x2="52" y2="62"/>
+      <line x1="14" y1="74" x2="40" y2="74"/>
+    </g>
+  </g>
+
+  <!-- Floating video file (middle right) -->
+  <g transform="translate(360, 235) rotate(-6)">
+    <rect width="86" height="70" rx="8" fill="url(#sbFile)" stroke="#FFFFFF" stroke-opacity="0.6"/>
+    <rect x="14" y="14" width="58" height="42" rx="5" fill="#0B3479" fill-opacity="0.45"/>
+    <polygon points="40,23 60,35 40,47" fill="#FFFFFF" fill-opacity="0.95"/>
+  </g>
+
+  <!-- Bottom server / panel card -->
+  <g transform="translate(115, 305)">
+    <rect width="276" height="92" rx="16" fill="url(#sbPanel)" stroke="#C3D9F4" stroke-width="1.5"/>
+
+    <!-- Rack -->
+    <g transform="translate(18, 16)">
+      <rect width="64" height="60" rx="8" fill="url(#sbRack)"/>
+      <!-- Rack LEDs -->
+      <g fill="#4ADE80">
+        <rect x="10" y="12" width="6" height="6" rx="1.5"/>
+        <rect x="22" y="12" width="6" height="6" rx="1.5"/>
+        <rect x="34" y="12" width="6" height="6" rx="1.5"/>
+      </g>
+      <g fill="#60A5FA">
+        <rect x="10" y="26" width="44" height="4" rx="2"/>
+        <rect x="10" y="36" width="44" height="4" rx="2"/>
+        <rect x="10" y="46" width="44" height="4" rx="2"/>
+      </g>
+    </g>
+
+    <!-- Storage bar -->
+    <g transform="translate(100, 28)">
+      <text x="0" y="0" font-family="Poppins, Arial, sans-serif" font-size="13" font-weight="600" fill="#0A3470">Storage Used</text>
+      <rect x="0" y="14" width="158" height="14" rx="7" fill="#E3ECFA"/>
+      <rect x="0" y="14" width="98" height="14" rx="7" fill="#0A3470"/>
+      <text x="0" y="52" font-family="Poppins, Arial, sans-serif" font-size="12" font-weight="500" fill="#4A6FA5">
+        0.98 GB of 2 GB
+      </text>
+    </g>
+
+    <!-- Upgrade pill -->
+    <g transform="translate(100, 66)">
+      <rect width="158" height="20" rx="10" fill="#0A3470" fill-opacity="0.08" stroke="#0A3470" stroke-opacity="0.25"/>
+      <text x="20" y="14" font-family="Poppins, Arial, sans-serif" font-size="11" font-weight="600" fill="#0A3470">↑ Upgrade plan for more space</text>
+    </g>
+  </g>
+</svg>

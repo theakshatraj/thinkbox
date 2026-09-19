@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="342" height="342">
+  <defs>
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1654A8" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#0E4288" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#07306B" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="file1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3E8CE0"/>
+      <stop offset="100%" stop-color="#1F6BC1"/>
+    </linearGradient>
+    <linearGradient id="file2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5FA8F2"/>
+      <stop offset="100%" stop-color="#3078C9"/>
+    </linearGradient>
+    <linearGradient id="file3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7FB8F5"/>
+      <stop offset="100%" stop-color="#4A8FD6"/>
+    </linearGradient>
+    <linearGradient id="folderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC857"/>
+      <stop offset="100%" stop-color="#F29C1F"/>
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6FB1FF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#6FB1FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Glow background -->
+  <circle cx="200" cy="210" r="170" fill="url(#glowGrad)"/>
+
+  <!-- AI neural network connecting dots (background) -->
+  <g stroke="#8FC4FF" stroke-opacity="0.3" stroke-width="1">
+    <line x1="60" y1="100" x2="130" y2="140"/>
+    <line x1="130" y1="140" x2="210" y2="105"/>
+    <line x1="210" y1="105" x2="290" y2="145"/>
+    <line x1="290" y1="145" x2="340" y2="210"/>
+    <line x1="290" y1="145" x2="200" y2="180"/>
+    <line x1="200" y1="180" x2="130" y2="140"/>
+    <line x1="60" y1="100" x2="90" y2="210"/>
+    <line x1="90" y1="210" x2="200" y2="180"/>
+    <line x1="90" y1="210" x2="70" y2="300"/>
+    <line x1="200" y1="180" x2="200" y2="250"/>
+    <line x1="200" y1="250" x2="290" y2="260"/>
+    <line x1="290" y1="260" x2="340" y2="210"/>
+    <line x1="290" y1="260" x2="310" y2="330"/>
+    <line x1="200" y1="250" x2="70" y2="300"/>
+  </g>
+  <g fill="#B3D4FF" fill-opacity="0.9">
+    <circle cx="60" cy="100" r="4"/>
+    <circle cx="130" cy="140" r="5"/>
+    <circle cx="210" cy="105" r="4.5"/>
+    <circle cx="290" cy="145" r="5.5"/>
+    <circle cx="340" cy="210" r="4"/>
+    <circle cx="200" cy="180" r="6"/>
+    <circle cx="90" cy="210" r="4"/>
+    <circle cx="70" cy="300" r="4.5"/>
+    <circle cx="200" cy="250" r="5"/>
+    <circle cx="290" cy="260" r="4.5"/>
+    <circle cx="310" cy="330" r="4"/>
+  </g>
+
+  <!-- Cloud shape -->
+  <g transform="translate(80, 150)">
+    <path d="M80 110 C55 110 35 88 40 60 C42 40 62 25 85 30 C90 10 115 0 135 10 C145 -5 172 -2 180 18 C200 15 220 32 218 55 C240 58 250 85 232 105 C228 118 210 125 195 122 Z"
+          fill="url(#cloudGrad)" stroke="#4A8FD9" stroke-width="1.5" stroke-opacity="0.5"/>
+    <!-- Cloud highlight -->
+    <path d="M95 40 C105 25 125 20 140 28 C148 18 165 14 175 26"
+          fill="none" stroke="#6FB1FF" stroke-width="2" stroke-opacity="0.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Floating files -->
+  <!-- Blue document file (top left) -->
+  <g transform="translate(55, 55) rotate(-15)">
+    <rect width="52" height="65" rx="6" fill="url(#file1)" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <path d="M52 0 L52 22 L30 0 Z" fill="#0B3479" fill-opacity="0.6"/>
+    <path d="M52 22 L30 22 L30 0 Z" fill="none" stroke="#FFFFFF" stroke-opacity="0.5"/>
+    <g stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round">
+      <line x1="10" y1="38" x2="40" y2="38"/>
+      <line x1="10" y1="46" x2="40" y2="46"/>
+      <line x1="10" y1="54" x2="30" y2="54"/>
+    </g>
+  </g>
+
+  <!-- Yellow folder (top right) -->
+  <g transform="translate(285, 70) rotate(10)">
+    <path d="M0 14 L0 58 C0 63 4 68 10 68 L62 68 C68 68 72 63 72 58 L72 24 C72 18 68 14 62 14 L34 14 L28 4 L10 4 C4 4 0 8 0 14 Z"
+          fill="url(#folderGrad)" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <path d="M0 14 L0 22 L72 22 L72 24 C72 18 68 14 62 14 L34 14 L28 4 L10 4 C4 4 0 8 0 14 Z"
+          fill="#E88A0B" fill-opacity="0.25"/>
+  </g>
+
+  <!-- Blue image file (bottom left) -->
+  <g transform="translate(40, 255) rotate(8)">
+    <rect width="60" height="50" rx="6" fill="url(#file2)" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <!-- mountain / sun placeholder -->
+    <circle cx="43" cy="15" r="5" fill="#FFE082"/>
+    <polygon points="5,45 22,20 35,35 45,22 55,45" fill="#FFFFFF" fill-opacity="0.9"/>
+  </g>
+
+  <!-- Video / media file (bottom right) -->
+  <g transform="translate(280, 260) rotate(-12)">
+    <rect width="65" height="52" rx="6" fill="url(#file3)" stroke="#FFFFFF" stroke-opacity="0.3"/>
+    <rect x="10" y="12" width="45" height="28" rx="3" fill="#0B3479" fill-opacity="0.5"/>
+    <polygon points="30,18 45,26 30,34" fill="#FFFFFF" fill-opacity="0.95"/>
+  </g>
+
+  <!-- Shine / sparkles -->
+  <g fill="#FFFFFF" fill-opacity="0.9">
+    <circle cx="100" cy="80" r="2"/>
+    <circle cx="190" cy="70" r="1.5"/>
+    <circle cx="330" cy="100" r="2.5"/>
+    <circle cx="345" cy="290" r="1.5"/>
+    <circle cx="50" cy="335" r="2"/>
+  </g>
+</svg>
