@@ -95,6 +95,9 @@ export const verifySecret = async ({
 
 export const getCurrentUser = async () => {
   try {
+    const sessionCookie = (await cookies()).get("appwrite-session");
+    if (!sessionCookie || !sessionCookie.value) return null;
+
     const { databases, account } = await createSessionClient();
 
     const result = await account.get();
@@ -110,6 +113,7 @@ export const getCurrentUser = async () => {
     return parseStringify(user.documents[0]);
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 
