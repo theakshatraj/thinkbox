@@ -39,7 +39,7 @@ export const uploadFile = async ({
       owner: ownerId,
       accountId,
       users: [],
-      bucketFileId: bucketFile.$id,
+      bucketField: appwriteConfig.bucketId,
     };
 
     const newFile = await databases
@@ -169,7 +169,7 @@ export const updateFileUsers = async ({
 
 export const deleteFile = async ({
   fileId,
-  bucketFileId,
+  url,
   path,
 }: DeleteFileProps) => {
   const { databases, storage } = await createAdminClient();
@@ -182,7 +182,10 @@ export const deleteFile = async ({
     );
 
     if (deletedFile) {
-      await storage.deleteFile(appwriteConfig.bucketId, bucketFileId);
+      const bucketFileId = url.match(/\/files\/([^/]+)\/(view|download)/)?.[1];
+      if (bucketFileId) {
+        await storage.deleteFile(appwriteConfig.bucketId, bucketFileId);
+      }
     }
 
     revalidatePath(path);

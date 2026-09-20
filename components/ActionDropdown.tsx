@@ -20,7 +20,6 @@ import Image from "next/image";
 import { Models } from "node-appwrite";
 import { actionsDropdownItems } from "@/constants";
 import Link from "next/link";
-import { constructDownloadUrl } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -58,8 +57,8 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
       rename: () =>
         renameFile({ fileId: file.$id, name, extension: file.extension, path }),
       share: () => updateFileUsers({ fileId: file.$id, emails, path }),
-      delete: () =>
-        deleteFile({ fileId: file.$id, bucketFileId: file.bucketFileId, path }),
+        delete: () =>
+          deleteFile({ fileId: file.$id, url: file.url, path }),
     };
 
     success = await actions[action.value as keyof typeof actions]();
@@ -172,7 +171,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             >
               {actionItem.value === "download" ? (
                 <Link
-                  href={constructDownloadUrl(file.bucketFileId)}
+                  href={file.url.replace("/view?", "/download?")}
                   download={file.name}
                   className="flex items-center gap-2"
                 >

@@ -38,7 +38,7 @@ declare interface UpdateFileUsersProps {
 }
 declare interface DeleteFileProps {
   fileId: string;
-  bucketFileId: string;
+  url: string;
   path: string;
 }
 
