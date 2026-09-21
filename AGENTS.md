@@ -46,6 +46,7 @@ No test script exists and there are no test files. No CI workflows, no `opencode
 - **`SegmentParams`** (in `types/index.d.ts`) is referenced but never defined — it relies on the AppRouter types or `ignoreBuildErrors`. Don't remove it.
 - **`node-appwrite` import**: `InputFile` comes from the `node-appwrite/file` subpath (`import { InputFile } from "node-appwrite/file"`), not the package root.
 - File uploads use `InputFile.fromBuffer(file, file.name)` — the File is read as an in-memory Buffer, not a path.
+- **New uploads must set storage permissions** — `storage.createFile` accepts a `permissions` array as the 4th argument. Without it the file is inaccessible (`user_unauthorized`). Since browser download links navigate directly to the Appwrite storage URL (different domain from the Next.js session cookie), use `[Permission.read(Role.any())]` so files are accessible via direct URL.
 - Max file size is 50 MB (`MAX_FILE_SIZE` in `constants/index.ts`).
 - The `files` collection schema only has attributes that are explicitly defined in the Appwrite console. The document must include required attributes (e.g. `bucketField`) and must not include attributes not defined in the collection (e.g. `bucketFileId`). Appwrite throws `document_invalid_structure` on mismatch. The storage file ID is NOT a stored attribute — extract it from the `url` field at runtime when needed for delete/download.
 - ShadCN components in `components/ui/` are auto-generated — edit config, don't hand-modify those files.
