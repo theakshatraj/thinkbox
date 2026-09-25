@@ -42,6 +42,13 @@ declare interface DeleteFileProps {
   path: string;
 }
 
+declare interface AIFileMetadata {
+  summary: string;
+  description: string;
+  tags: string[];
+  category: string;
+}
+
 declare interface FileUploaderProps {
   ownerId: string;
   accountId: string;

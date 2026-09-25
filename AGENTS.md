@@ -50,3 +50,60 @@ No test script exists and there are no test files. No CI workflows, no `opencode
 - Max file size is 50 MB (`MAX_FILE_SIZE` in `constants/index.ts`).
 - The `files` collection schema only has attributes that are explicitly defined in the Appwrite console. The document must include required attributes (e.g. `bucketField`) and must not include attributes not defined in the collection (e.g. `bucketFileId`). Appwrite throws `document_invalid_structure` on mismatch. The storage file ID is NOT a stored attribute — extract it from the `url` field at runtime when needed for delete/download.
 - ShadCN components in `components/ui/` are auto-generated — edit config, don't hand-modify those files.
+
+## AI Layer (Stage 1 — AI File Understanding)
+
+AI processing is isolated in `lib/ai/`. All AI API calls are server-side only; `OPENROUTER_API_KEY` must never reach the browser.
+
+### Files
+
+- `lib/ai/client.ts` — OpenRouter-compatible OpenAI client (lazy-initialized via `require("openai")` with base URL `https://openrouter.ai/api/v1`), also provides a `createAdminClient()` (no `"use server"` constraint) for use in route handlers
+- `lib/ai/content-extraction.ts` — Extracts text from PDF (via `pdf-parse`), TXT, DOCX (via `mammoth`). Downloads file from Appwrite Storage using `fetch` with `X-Appwrite-Key` header
+- `lib/ai/generate-metadata.ts` — Calls `anthropic/claude-3.5-sonnet` via OpenRouter with `response_format: { type: "json_object" }` to generate `{ summary, description, tags, category }`
+- `lib/ai/process-file.ts` — Orchestrator: gets file doc from DB → sets `aiStatus: "processing"` → extracts content → generates metadata → updates document → sets `aiStatus: "completed"` or `"failed"`
+- `app/api/ai/process/route.ts` — POST endpoint for triggering AI processing (used for testing/future BullMQ integration)
+- `lib/setup/ai-attributes.ts` — One-time setup script to add AI attributes to the Appwrite `files` collection
+
+### Upload flow
+
+```
+uploadFile() server action
+  ↓
+storage.createFile() → Appwrite Storage (with Permission.read(Role.any()))
+  ↓
+databases.createDocument() → Appwrite Database (with aiStatus: "pending")
+  ↓
+Returns success to user immediately
+  ↓
+Promise.resolve().then(() => processFile(fileId, accountId)) → background AI processing
+  ↓
+extractContent → generateFileMetadata → update document
+```
+
+### Appwrite schema changes required (run `setupAITableAttributes()` once)
+
+Add these attributes to the `files` collection:
+- `content` (string, optional)
+- `summary` (string, optional)
+- `description` (string, optional)
+- `tags` (array of strings, optional)
+- `category` (string, optional)
+- `aiStatus` (string, required, default: "pending")
+
+### Packages installed
+
+`openai`, `pdf-parse`, `mammoth` (via `npm install --legacy-peer-deps`)
+
+### Environment variables
+
+Add `OPENROUTER_API_KEY` to `.env.local` (and `.env.example`). Get a free key at https://openrouter.ai/keys. The model used is `anthropic/claude-3.5-sonnet`.
+
+### AI Provider
+
+Uses OpenRouter (not direct OpenAI API). The `openai` npm package connects to `https://openrouter.ai/api/v1` instead of the default OpenAI endpoint. This allows using multiple models (Claude, Gemini, Llama) with one API key and a generous free tier.
+
+### Future stages (not implemented)
+
+- Stage 2: Qdrant for embeddings + semantic search
+- Stage 3: Ask Thinkbox RAG assistant
+- BullMQ + Redis for background job processing

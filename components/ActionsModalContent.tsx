@@ -25,6 +25,11 @@ const DetailRow = ({ label, value }: { label: string; value: string }) => (
 );
 
 export const FileDetails = ({ file }: { file: Models.Document }) => {
+  const aiStatus = (file.aiStatus as string) || "pending";
+  const summary = (file.summary as string) || "";
+  const tags = (file.tags as string[]) || [];
+  const category = (file.category as string) || "";
+
   return (
     <>
       <ImageThumbnail file={file} />
@@ -33,6 +38,33 @@ export const FileDetails = ({ file }: { file: Models.Document }) => {
         <DetailRow label="Size:" value={convertFileSize(file.size)} />
         <DetailRow label="Owner:" value={file.owner.fullName} />
         <DetailRow label="Last edit:" value={formatDateTime(file.$updatedAt)} />
+        {aiStatus && (
+          <DetailRow label="AI Status:" value={aiStatus} />
+        )}
+        {summary && (
+          <div>
+            <p className="file-details-label text-left">AI Summary:</p>
+            <p className="file-details-value text-left text-sm">{summary}</p>
+          </div>
+        )}
+        {tags.length > 0 && (
+          <div>
+            <p className="file-details-label text-left">Tags:</p>
+            <div className="flex flex-wrap gap-1">
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-[10px] bg-brand/10 text-brand px-2 py-0.5 rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        {category && (
+          <DetailRow label="Category:" value={category} />
+        )}
       </div>
     </>
   );

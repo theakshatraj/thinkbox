@@ -5,7 +5,18 @@ import { convertFileSize } from "@/lib/utils";
 import FormattedDateTime from "@/components/FormattedDateTime";
 import ActionDropdown from "@/components/ActionDropdown";
 
+const statusLabels: Record<string, string> = {
+  pending: "⏳ Processing",
+  processing: "⏳ Analyzing",
+  completed: "✓ AI Ready",
+  failed: "⚠ AI Failed",
+};
+
 const Card = ({ file }: { file: Models.Document }) => {
+  const aiStatus = (file.aiStatus as string) || "pending";
+  const tags = (file.tags as string[]) || [];
+  const category = (file.category as string) || "";
+
   return (
     <Link href={file.url} target="_blank" className="file-card">
       <div className="flex justify-between">
@@ -32,6 +43,31 @@ const Card = ({ file }: { file: Models.Document }) => {
         <p className="caption line-clamp-1 text-light-200">
           By: {file.owner.fullName}
         </p>
+        {aiStatus && (
+          <p className="caption line-clamp-1 text-light-200">
+            {statusLabels[aiStatus] || aiStatus}
+          </p>
+        )}
+        {tags.length > 0 && (
+          <div className="flex flex-wrap gap-1 mt-1">
+            {tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] bg-brand/10 text-brand px-2 py-0.5 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+            {tags.length > 3 && (
+              <span className="text-[10px] text-light-200">
+                +{tags.length - 3}
+              </span>
+            )}
+          </div>
+        )}
+        {category && !tags.length && (
+          <p className="caption text-light-200">{category}</p>
+        )}
       </div>
     </Link>
   );

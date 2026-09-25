@@ -7,6 +7,7 @@ import { ID, Models, Permission, Query, Role } from "node-appwrite";
 import { constructFileUrl, getFileType, parseStringify } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/actions/user.actions";
+import { processFile } from "@/lib/ai/process-file";
 
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
@@ -41,22 +42,35 @@ export const uploadFile = async ({
       accountId,
       users: [],
       bucketField: appwriteConfig.bucketId,
+      aiStatus: "pending",
     };
 
-    const newFile = await databases
-      .createDocument(
+    let newFile: Models.Document | undefined;
+    try {
+      newFile = await databases.createDocument(
         appwriteConfig.databaseId,
         appwriteConfig.filesCollectionId,
         ID.unique(),
         fileDocument,
-      )
-      .catch(async (error: unknown) => {
-        await storage.deleteFile(appwriteConfig.bucketId, bucketFile.$id);
-        handleError(error, "Failed to create file document");
-      });
+      );
+    } catch (error) {
+      await storage.deleteFile(appwriteConfig.bucketId, bucketFile.$id);
+      handleError(error, "Failed to create file document");
+    }
 
     revalidatePath(path);
-    return parseStringify(newFile);
+    if (newFile) {
+      if (process.env.ENABLE_AI_PROCESSING === "true") {
+        Promise.resolve()
+          .then(() =>
+            processFile({ fileId: newFile.$id, storageFileId: bucketFile.$id, accountId }),
+          )
+          .catch((err) =>
+            console.error("Background AI processing error:", err),
+          );
+      }
+    }
+    return parseStringify(newFile!);
   } catch (error) {
     handleError(error, "Failed to upload file");
   }
