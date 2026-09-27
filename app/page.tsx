@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn, getFileIcon } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 const features = [
   ["/assets/icons/documents.svg", "Store everything", "Keep documents, images, videos, audio, and more in one secure workspace."],
   ["/assets/icons/search.svg", "Find files fast", "Search your entire cloud and get to the file you need in seconds."],
