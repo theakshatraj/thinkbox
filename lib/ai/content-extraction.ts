@@ -10,11 +10,6 @@ export async function extractContent(
 ): Promise<string> {
   const { storage } = await createAdminClient();
 
-  console.log("[EXTRACT] bucketId:", appwriteConfig.bucketId);
-  console.log("[EXTRACT] fileId:", fileId);
-  console.log("[EXTRACT] endpoint:", appwriteConfig.endpointUrl);
-  console.log("[EXTRACT] projectId:", appwriteConfig.projectId);
-
   const arrayBuffer = await storage.getFileDownload(
     appwriteConfig.bucketId,
     fileId,

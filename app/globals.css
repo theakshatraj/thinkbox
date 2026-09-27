@@ -98,6 +98,41 @@
 @utility primary-btn { @apply !bg-brand hover:!bg-brand-100 !text-white !transition-all !rounded-full !text-[14px] !leading-[20px] !font-medium; }
 @utility flex-center { @apply flex items-center justify-center; }
 
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float-delay-1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float-delay-2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-1 { animation: float-delay-1 7s ease-in-out infinite; }
+.animate-float-2 { animation: float-delay-2 8s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.8s ease-out forwards; }
+.animate-fade-up-delay-1 { animation: fade-up 0.8s ease-out 0.2s forwards; opacity: 0; }
+.animate-fade-up-delay-2 { animation: fade-up 0.8s ease-out 0.4s forwards; opacity: 0; }
+.animate-fade-up-delay-3 { animation: fade-up 0.8s ease-out 0.6s forwards; opacity: 0; }
+
+/* Landing page */
+.landing-page {
+  overflow-x: clip;
+}
+
+.landing-section {
+  scroll-margin-top: 96px;
+}
+
 /* SHADCN OVERRIDES */
 @utility shad-no-focus {
   @apply !outline-none !ring-offset-transparent focus:!ring-transparent focus:!ring-offset-0 focus-visible:!outline-none focus-visible:!ring-0 focus-visible:!ring-transparent focus-visible:!ring-offset-0;

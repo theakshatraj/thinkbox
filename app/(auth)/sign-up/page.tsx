@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 const SignUp = async () => {
   const currentUser = await getCurrentUser();
-  if (currentUser) redirect("/");
+  if (currentUser) redirect("/dashboard");
 
   return <AuthForm type="sign-up" />;
 };

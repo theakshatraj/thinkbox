@@ -11,7 +11,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Thinkbox",
-  description: "Thinkbox - Your AI-powered personal cloud storage.",
+  description: "Thinkbox - Your personal cloud storage.",
 };
 
 export default function RootLayout({

@@ -12,9 +12,6 @@ export async function processFile({
 }: ProcessFileInput): Promise<ProcessFileResult> {
   const { databases } = await createAdminClient();
 
-  console.log("[PROCESS] Database document ID:", fileId);
-  console.log("[PROCESS] Storage file ID:", storageFileId);
-
   try {
     const fileDoc = await databases.getDocument(
       appwriteConfig.databaseId,
@@ -52,7 +49,7 @@ export async function processFile({
 
     return { success: true, aiStatus: "completed" };
   } catch (error: unknown) {
-    console.error("AI processing failed for file:", fileId, storageFileId, error);
+    console.error("AI processing failed for file:", fileId, error);
 
     try {
       await databases.updateDocument(
